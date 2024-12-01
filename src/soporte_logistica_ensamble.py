@@ -111,7 +111,7 @@ class AnalisisModelosClasificacion:
                 pickle.dump(modelo_logistica, f)
         else:
             # Ajuste del modelo
-            grid_search = GridSearchCV(estimator=modelo, param_grid=param_grid, cv=5, scoring='accuracy', n_jobs=-1)
+            grid_search = GridSearchCV(estimator=modelo, param_grid=param_grid, cv=5, scoring='accuracy', n_jobs=14)
             grid_search.fit(self.X_train, self.y_train)
             print(f"El mejor modelo es {grid_search.best_estimator_}")
             self.resultados[modelo_nombre]["mejor_modelo"] = grid_search.best_estimator_
@@ -158,8 +158,8 @@ class AnalisisModelosClasificacion:
             "f1": f1_score(self.y_train, pred_train, average='weighted', zero_division=0),
             "kappa": cohen_kappa_score(self.y_train, pred_train),
             "auc": roc_auc_score(self.y_train, prob_train) if prob_train is not None else None,
-            "time_seconds": elapsed_time,
-            "n_jobs": num_nucleos,
+            "tiempo_computacion(segundos)": elapsed_time,
+            "nucleos_usados": num_nucleos,
             "modelo": modelo_nombre
         }
 

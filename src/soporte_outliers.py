@@ -418,7 +418,7 @@ class GestionOutliersMultivariados:
         y_pred = clf.fit_predict(self.dataframe[col_numericas])
         df_lof[f"outlier"] = y_pred
 
-        return df_lof
+        return pd.DataFrame(df_lof)
 
     def detectar_outliers_if(self,  contaminacion, n_estimators=1000):
         """
@@ -432,7 +432,7 @@ class GestionOutliersMultivariados:
         prediccion_ifo = ifo.predict(self.dataframe[col_numericas])
         df_if["outlier"] = prediccion_ifo
 
-        return df_if
+        return pd.DataFrame(df_if)
 
     def detectar_outliers_dbscan(self, epsilon, min_samples):
         """
@@ -506,7 +506,7 @@ class GestionOutliersMultivariados:
         else:
             raise ValueError("Método no válido. Los métodos disponibles son 'isolation_forest' y 'lof'.")
 
-        return df_cleaned
+        return pd.DataFrame(df_cleaned)
 
     def capar_outliers(self, data,  lower_percentile=0.01, upper_percentile=0.99):
         """

@@ -100,7 +100,7 @@ class Desbalanceo:
         df_resampled = pd.concat([pd.DataFrame(X_resampled, columns=X.columns), pd.Series(y_resampled, name=self.variable_dependiente)], axis=1)
         return df_resampled
     
-    def balancear_clases_smote_nc(self):
+    def balancear_clases_smote_nc(self, lista_categoricas):
         """
         Balancea el conjunto de datos utilizando SMOTENC para manejar variables categóricas.
 
@@ -115,9 +115,9 @@ class Desbalanceo:
         X = self.dataframe.drop(self.variable_dependiente, axis=1)
         y = self.dataframe[self.variable_dependiente]
 
-        categorical_features = self.dataframe.select_dtypes(["object", "category"]).columns
+        #categorical_features = self.dataframe.select_dtypes(["object", "category"]).columns
 
-        smote_nc = SMOTENC(categorical_features=categorical_features, random_state=42)
+        smote_nc = SMOTENC(categorical_features=lista_categoricas, random_state=42)
         X_resampled, y_resampled = smote_nc.fit_resample(X, y)
 
         df_resampled = pd.concat([pd.DataFrame(X_resampled, columns=X.columns), pd.Series(y_resampled, name=self.variable_dependiente)], axis=1)

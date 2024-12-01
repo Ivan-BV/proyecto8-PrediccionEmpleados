@@ -107,7 +107,8 @@ class AnalisisModelosClasificacion:
             self.resultados[modelo_nombre]["pred_train"] = modelo_logistica.predict(self.X_train)
             self.resultados[modelo_nombre]["pred_test"] = modelo_logistica.predict(self.X_test)
             self.resultados[modelo_nombre]["mejor_modelo"] = modelo_logistica
-
+            with open('mejor_modelo/mejor_modelo_logistica.pkl', 'wb') as f:
+                pickle.dump(modelo_logistica, f)
         else:
             # Ajuste del modelo
             grid_search = GridSearchCV(estimator=modelo, param_grid=param_grid, cv=5, scoring='accuracy', n_jobs=-1)
@@ -116,9 +117,8 @@ class AnalisisModelosClasificacion:
             self.resultados[modelo_nombre]["mejor_modelo"] = grid_search.best_estimator_
             self.resultados[modelo_nombre]["pred_train"] = grid_search.best_estimator_.predict(self.X_train)
             self.resultados[modelo_nombre]["pred_test"] = grid_search.best_estimator_.predict(self.X_test)
-        
-        with open('mejor_modelo/mejor_modelo.pkl', 'wb') as f:
-            pickle.dump(grid_search.best_estimator_, f)
+            with open('mejor_modelo/mejor_modelo.pkl', 'wb') as f:
+                pickle.dump(grid_search.best_estimator_, f)
 
 
 

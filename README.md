@@ -22,6 +22,8 @@ El proyecto está organizado de la siguiente manera:
 │   ├── output/           # Datos procesados y resultados finales
 │   └── raw/              # Datos en bruto (sin procesar)
 │
+├── assets/               # Imagenes para mostrar en el README
+│
 ├── flask/                # Archivos relacionados con el despliegue en Flask
 │
 ├── modelos/              # Modelos predictivos
@@ -100,7 +102,7 @@ A lo largo del análisis se evaluaron distintos modelos predictivos y se compara
 5. **Quinta Evaluación**
 
     ![Métricas Evaluación 5](assets/image-5.png)
-    
+
     - **Random Forest**: `Accuracy` de **92.68%**, `kappa` de **0.8536**, y `AUC` de **0.9841**. Este modelo tuvo un buen rendimiento con una alta capacidad de generalización, reflejada en un valor de `kappa` sólido y un `AUC` elevado. El tiempo de cómputo fue de **0.0422** segundos, sin el uso de múltiples núcleos, mostrando una eficiencia razonable.
     - **Gradient Boosting**: `Accuracy` de **100%**, `kappa` de **1.0**, y `AUC` de **1.0**. Utilizó **16 núcleos** para un tiempo de cómputo eficiente (**0.0105** segundos), indicando un excelente rendimiento tanto en precisión como en eficiencia.
     - **XGBoost**: `Accuracy` de **92.49%** en entrenamiento y prueba, con `kappa` de **0.8499**. Mantuvo un buen equilibrio entre precisión y eficiencia, con un tiempo de cómputo bajo (**0.0187** segundos).
